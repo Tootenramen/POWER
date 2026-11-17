@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>POWER — Say it. It's built.</title>
+<meta name="description" content="POWER is the chat-bar automation builder for FR33. Concept mockup.">
+<meta name="theme-color" content="#06070c">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+.hero{text-align:center}
+.hero .lede{margin-left:auto;margin-right:auto}
+.hero .cta{justify-content:center}
+.bar{max-width:760px;margin:34px auto 0;padding:10px 10px 10px 24px;border-radius:999px;display:flex;align-items:center;gap:12px;text-align:left;box-shadow:0 0 0 1px rgba(255,255,255,.14),0 30px 80px -20px color-mix(in srgb,var(--acc) 55%,transparent);background:rgba(14,16,30,.7)}
+.bar .sp{font-size:1.3rem}
+.bar input{flex:1;min-width:0;background:none;border:0;outline:0;color:#fff;font:500 1.05rem var(--body);padding:12px 0}
+.bar input::placeholder{color:var(--dim)}
+.bar .btn{min-height:48px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:18px}
+.pill{all:unset;cursor:pointer;padding:9px 16px;border-radius:999px;border:1px solid var(--line);background:var(--glass);font:500 .84rem var(--body);color:#d6deef;transition:all .3s var(--ease)}
+.pill:hover{background:var(--glass2);transform:translateY(-2px)}
+.pill:focus-visible{outline:2px solid #fff;outline-offset:2px}
+
+.demo{display:grid;gap:16px;margin-top:34px}
+@media(min-width:1000px){.demo{grid-template-columns:minmax(300px,.8fr) 1.4fr;align-items:stretch}}
+.chat{display:flex;flex-direction:column;min-height:560px}
+.msgs{flex:1;overflow:auto;padding:16px;display:flex;flex-direction:column;gap:12px;max-height:600px}
+.m{max-width:92%;padding:12px 15px;border-radius:18px;font-size:.92rem;line-height:1.5;animation:pop .45s var(--ease) both}
+@keyframes pop{from{opacity:0;transform:translateY(10px) scale(.98)}}
+.m.u{align-self:flex-end;background:var(--grad);color:#06070c;font-weight:500;border-bottom-right-radius:6px}
+.m.b{align-self:flex-start;background:rgba(255,255,255,.07);border:1px solid var(--line);border-bottom-left-radius:6px}
+.m .chk{display:flex;gap:8px;align-items:center;color:var(--mute);font-size:.84rem;margin-top:4px}
+.m .chk i{color:var(--g);font-style:normal}
+.m ul{margin:6px 0 0;padding-left:18px;color:var(--mute)}
+.cin{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}
+.cin input{flex:1;min-width:0;background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:999px;padding:11px 16px;color:#fff;font:400 .92rem var(--body);outline:0}
+.cin input:focus{border-color:var(--acc)}
+.cv{display:flex;flex-direction:column;min-height:560px}
+.tabs{display:flex;gap:4px;padding:8px 10px;border-bottom:1px solid var(--line);align-items:center}
+.tab{all:unset;cursor:pointer;padding:7px 14px;border-radius:999px;font:500 .82rem var(--body);color:var(--mute)}
+.tab[aria-selected=true]{background:rgba(255,255,255,.12);color:#fff}
+.tab:focus-visible{outline:2px solid #fff}
+.tabs .sp{flex:1}
+.view{flex:1;padding:18px;overflow:auto;max-height:600px}
+.empty{height:100%;min-height:380px;display:grid;place-items:center;text-align:center;color:var(--dim);font-size:.95rem}
+.empty b{display:block;font:600 1.2rem var(--disp);color:#cfd7ea;margin-bottom:6px}
+.flow{display:grid;gap:0;max-width:520px;margin:0 auto}
+.nd{position:relative;display:grid;grid-template-columns:44px 1fr auto;gap:14px;align-items:center;padding:14px 16px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.05);animation:drop .55s var(--ease) both;transition:border-color .4s,box-shadow .4s,background .4s}
+@keyframes drop{from{opacity:0;transform:translateY(-18px) scale(.96)}}
+.nd .ic{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;font-size:1.2rem;background:rgba(255,255,255,.08)}
+.nd b{display:block;font:600 .96rem var(--disp)}.nd small{color:var(--dim);font-size:.78rem}
+.nd.trigger .ic{background:color-mix(in srgb,var(--c) 22%,transparent)}
+.nd.ai .ic{background:color-mix(in srgb,var(--v) 28%,transparent)}
+.nd.approve .ic{background:color-mix(in srgb,var(--a) 26%,transparent)}
+.nd.act .ic{background:color-mix(in srgb,var(--g) 22%,transparent)}
+.nd.run{border-color:var(--c);box-shadow:0 0 30px -6px var(--c);background:color-mix(in srgb,var(--c) 10%,transparent)}
+.nd.ok{border-color:color-mix(in srgb,var(--g) 60%,transparent)}
+.nd.hold{border-color:var(--a);box-shadow:0 0 30px -6px var(--a)}
+.cn{height:26px;width:2px;margin:0 auto;background:linear-gradient(var(--acc),transparent);opacity:.7;animation:grow .4s var(--ease) both;transform-origin:top}
+@keyframes grow{from{transform:scaleY(0)}}
+.out{margin-top:14px;padding:12px 14px;border-radius:14px;background:rgba(0,0,0,.3);border:1px solid var(--line);font:400 .76rem/1.7 var(--mono);color:#bfe9d9;min-height:70px;max-width:520px;margin-left:auto;margin-right:auto}
+.out div{animation:pop .3s both}
+.code{font:400 .8rem/1.75 var(--mono);color:#cfe3ff;white-space:pre-wrap;word-break:break-word;margin:0}
+.code .k{color:var(--g)}.code .c{color:var(--dim)}.code .s{color:#ffd1a1}
+.diff{font:400 .8rem/1.75 var(--mono);margin:0;white-space:pre-wrap;word-break:break-word}
+.diff .a{color:#7ff0c5;background:rgba(52,227,176,.09);display:block;padding:0 8px;border-radius:4px}
+.diff .h{color:var(--dim)}
+.foot2{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:12px 14px;border-top:1px solid var(--line)}
+.foot2 .grow{flex:1}
+.gate{display:flex;align-items:center;gap:10px;font-size:.84rem;color:var(--mute)}
+.sw{all:unset;cursor:pointer;width:46px;height:28px;border-radius:20px;background:rgba(255,255,255,.14);position:relative;transition:background .3s;flex:none}
+.sw::after{content:"";position:absolute;left:3px;top:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:transform .3s var(--ease)}
+.sw[aria-checked=true]{background:var(--g)}.sw[aria-checked=true]::after{transform:translateX(18px)}
+.sw:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.safety{margin-top:12px;padding:12px 14px;border-radius:14px;background:color-mix(in srgb,var(--g) 8%,transparent);border:1px solid color-mix(in srgb,var(--g) 30%,transparent);font-size:.82rem;color:#cfeee2;max-width:520px;margin-left:auto;margin-right:auto}
+
+.modelrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.mdl{all:unset;cursor:pointer;padding:12px 18px;border-radius:16px;border:1px solid var(--line);background:var(--glass);font:600 .92rem var(--disp);transition:all .3s}
+.mdl small{display:block;font:400 .74rem var(--body);color:var(--dim);margin-top:2px}
+.mdl[aria-pressed=true]{border-color:var(--acc);background:color-mix(in srgb,var(--acc) 14%,transparent);box-shadow:0 0 34px -12px var(--acc)}
+.mdl:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.mout{margin-top:16px;padding:16px 18px;border-radius:16px;border:1px solid var(--line);background:rgba(0,0,0,.28);font-size:.92rem;color:#d3dcef;max-width:720px}
+</style>
+</head>
+<body class="power">
+<div class="aurora" aria-hidden="true"></div><div class="progress" aria-hidden="true"></div>
+<nav class="nav" aria-label="Product pages">
+  <a class="brand" href="https://tootenramen.github.io/POWER/">POWER</a>
+  <a class="l" href="https://tootenramen.github.io/FR33/">Hub</a>
+  <a class="l" href="https://tootenramen.github.io/POWER/" aria-current="page">POWER</a>
+  <a class="l" href="https://tootenramen.github.io/FAST/">FAST</a>
+</nav>
+
+<header class="hero"><div class="wrap">
+  <span class="eyebrow"><i></i> The builder inside FR33</span>
+  <h1>Say it.<br><span class="gw">It's built.</span></h1>
+  <p class="lede">No canvas to learn. No code to write. Describe the automation you want in plain words. POWER reads your systems, builds it, tests it, and shows you everything before it goes live.</p>
+  <form class="glass bar" id="heroForm" autocomplete="off">
+    <span class="sp" aria-hidden="true">✦</span>
+    <label class="sr" for="heroIn">Describe an automation</label>
+    <input id="heroIn" placeholder="Describe an automation…" />
+    <button class="btn pri" type="submit">Build it</button>
+  </form>
+  <div class="chips" id="chips" role="group" aria-label="Try an example"></div>
+  <p class="note">Concept mockup · try one of the examples. Everything runs in your browser with simulated data.</p>
+</div></header>
+
+<section class="sec" id="demo"><div class="wrap">
+  <p class="kicker">Live walkthrough</p>
+  <h2>Chat on the left. <span class="gw">Automation</span> on the right.</h2>
+  <p class="sub">Pick an example above or type your own. Then dry-run it, read the diff, and approve it. You are always the last step.</p>
+  <div class="demo">
+    <div class="win chat"><div class="win-bar"><i></i><i></i><i></i><span>POWER · Chat</span></div>
+      <div class="msgs" id="msgs" aria-live="polite"><div class="m b">Hi. Tell me what you want automated and I'll build it from what's connected to your FR33.</div></div>
+      <form class="cin" id="chatForm" autocomplete="off"><label class="sr" for="chatIn">Message POWER</label><input id="chatIn" placeholder="Ask for a change, e.g. “also page on-call”"><button class="btn sm pri" type="submit">Send</button></form>
+    </div>
+    <div class="win cv"><div class="win-bar"><i></i><i></i><i></i><span id="cvTitle">POWER · Workspace</span></div>
+      <div class="tabs" role="tablist"><button class="tab" role="tab" aria-selected="true" data-t="canvas">Canvas</button><button class="tab" role="tab" aria-selected="false" data-t="file">File</button><button class="tab" role="tab" aria-selected="false" data-t="diff">Diff</button><span class="sp"></span><span class="chip" id="state">Draft</span></div>
+      <div class="view" id="view"><div class="empty"><div><b>Nothing here yet</b>Ask POWER for something and watch it appear.</div></div></div>
+      <div class="foot2"><button class="btn sm" id="dry" disabled>▶ Dry-run on sample event</button><span class="grow"></span><div class="gate"><span>I've reviewed it</span><button class="sw" id="rev" role="switch" aria-checked="false" aria-label="I have reviewed this automation" disabled></button></div><button class="btn sm pri" id="live" disabled>Go live</button></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec"><div class="wrap">
+  <p class="kicker">Why it's different</p>
+  <h2>A builder that <span class="gw">shows its work</span></h2>
+  <div class="grid">
+    <div class="glass spot feat rv"><div class="ic">🧠</div><h3>Reads your system first</h3><p>POWER looks at what you've connected and the shape of your real events before it suggests anything. No generic templates.</p></div>
+    <div class="glass spot feat rv" style="--d:.06s"><div class="ic">📄</div><h3>Output is a plain file</h3><p>What it builds is readable text in your repo. Prefer typing? Edit it by hand. Prefer chat? Ask for the change.</p></div>
+    <div class="glass spot feat rv" style="--d:.12s"><div class="ic">🧪</div><h3>Dry-run before anything's live</h3><p>Every build is tested against sample events first. You see each step's output before it touches a real system.</p></div>
+    <div class="glass spot feat rv" style="--d:.18s"><div class="ic">🔐</div><h3>An approval gate that can't be skipped</h3><p>Anything generated by AI needs a person's yes before it can act. That's an engine rule, not a setting.</p></div>
+    <div class="glass spot feat rv" style="--d:.24s"><div class="ic">🔁</div><h3>Every change is a diff</h3><p>See exactly what changed, line by line, like a code review. Undo is one click, because it's just git.</p></div>
+    <div class="glass spot feat rv" style="--d:.3s"><div class="ic">🏠</div><h3>Runs on a model you host</h3><p>Point POWER at a local model. Your alerts, your logs and your prompts never have to leave your network.</p></div>
+  </div>
+</div></section>
+
+<section class="sec"><div class="wrap">
+  <p class="kicker">Bring your own brain</p>
+  <h2>Your model. <span class="gw">Your hardware.</span></h2>
+  <p class="sub">POWER speaks to any model you can run. Pick one to see how it's wired. (Model availability on your hardware is your call, nothing here is a benchmark.)</p>
+  <div class="modelrow" id="mdls" role="group" aria-label="Model choice">
+    <button class="mdl" aria-pressed="true" data-m="q">Qwen<small>open weights · local</small></button>
+    <button class="mdl" aria-pressed="false" data-m="g">GLM<small>open weights · local</small></button>
+    <button class="mdl" aria-pressed="false" data-m="t">Your fine-tune<small>trained on your own runbooks</small></button>
+    <button class="mdl" aria-pressed="false" data-m="h">Hosted API<small>optional · you decide</small></button>
+  </div>
+  <div class="mout glass" id="mout"></div>
+</div></section>
+
+<footer class="foot"><div class="wrap">
+  <p class="kicker">Not sure what to ask for?</p><h2>Meet <span class="gw">FAST</span>.</h2>
+  <div class="row">
+    <a class="glass spot" href="https://tootenramen.github.io/FAST/"><b>FAST →</b><span>Helps you figure out what you're looking for.</span></a>
+    <a class="glass spot" href="https://tootenramen.github.io/FR33/"><b>← FR33</b><span>Back to the hub tour.</span></a>
+  </div>
+  <p class="legal">FR33 · POWER · FAST — concept mockups. Simulated data. Not a shipped product.</p>
+</div></footer>
+
+<script src="shared.js"></script>
+<script>
+(function(){
+  var SC={
+   phish:{name:'phishing-triage',label:'Triage reported phishing',ask:'When someone reports a phishing email, check the sender and links, pull it from every inbox if it\'s bad, and open a case.',
+    reads:['Mail gateway · 3 mailboxes','Reputation lookup · connected','Case system · FR33 built-in'],
+    nodes:[['trigger','📨','Email reported','Report button · phish@ mailbox'],['step','🔗','Extract sender + links','Parse headers and URLs'],['ai','🧠','Assess risk','AI summary · output marked untrusted'],['approve','🧑‍⚖️','You approve purge','Human gate · required'],['act','🗑️','Purge from inboxes','Mail gateway · reversible'],['act','📂','Open case + notify','Case system · reporter notified']],
+    sample:['event: report from j.okafor, subject "Invoice overdue"','extract: sender=billing@acme-pay.top, 2 links','assess: likely credential phish (3 signals)','approval: waiting for a human (dry-run: simulated yes)','purge: would remove 6 copies','case: would open CASE-0143']},
+   ato:{name:'account-takeover-response',label:'Respond to account takeover',ask:'If an account signs in from two countries within an hour, kill its sessions and ask me before locking it.',
+    reads:['Identity provider · sign-in logs','Email gateway · rule audit','On-call roster · connected'],
+    nodes:[['trigger','🌍','Impossible travel','Two countries in under 60 min'],['step','🔎','Pull context','Last 24h sign-ins + inbox rules'],['act','⛔','Revoke sessions','Reversible · runs immediately'],['approve','🧑‍⚖️','You approve lock','Human gate · required'],['act','🔒','Lock account','Identity provider'],['act','🔔','Page on-call','Only if lock approved']],
+    sample:['event: maria.s · Little Rock then Lagos, 9 min apart','context: new forwarding rule, legacy protocol','revoke: would end 3 sessions','approval: waiting for a human (dry-run: simulated yes)','lock: would disable maria.s','page: would notify on-call']},
+   iso:{name:'ransomware-isolate',label:'Isolate host on ransomware behaviour',ask:'When an endpoint shows ransomware behaviour, isolate the host and page on-call.',
+    reads:['Endpoint agent · 214 hosts','On-call roster · connected','Ticketing · connected'],
+    nodes:[['trigger','🛡️','Ransomware behaviour','Mass encryption signal'],['step','🖥️','Identify host + owner','Asset inventory lookup'],['approve','🧑‍⚖️','You approve isolation','Human gate · skippable only by policy you set'],['act','🧱','Isolate host','Endpoint agent · reversible'],['act','🔔','Page on-call','Phone + chat'],['act','🎫','Open ticket','Ticketing']],
+    sample:['event: fin-ws-22 · 1,200 files renamed in 40s','host: fin-ws-22 · owner: l.pereira','approval: waiting for a human (dry-run: simulated yes)','isolate: would cut network, keep management channel','page: would call on-call','ticket: would open INC-2291']},
+   vuln:{name:'monday-vuln-digest',label:'Weekly vulnerability digest',ask:'Every Monday, list critical vulnerabilities that have known exploits, ticket the owners, and post a digest.',
+    reads:['Vulnerability scanner · connected','Asset owners · directory','Team chat · connected'],
+    nodes:[['trigger','⏰','Every Monday 08:00','Schedule'],['step','📋','List critical + exploited','Scanner API'],['ai','🧠','Write the digest','AI summary · output marked untrusted'],['approve','🧑‍⚖️','You approve posting','Human gate · required'],['act','🎫','Ticket the owners','One per owner'],['act','💬','Post to #security','Team chat']],
+    sample:['event: schedule fired','list: 17 findings across 9 assets','digest: drafted, 4 owners affected','approval: waiting for a human (dry-run: simulated yes)','tickets: would open 4','post: would publish to #security']}
+  };
+  var order=['phish','ato','iso','vuln'],tok=0,cur=null,tab='canvas',built=false,live=false;
+  var $=function(i){return document.getElementById(i)};
+  var chips=$('chips');
+  order.forEach(function(k){var b=document.createElement('button');b.className='pill';b.type='button';b.textContent=SC[k].label;b.onclick=function(){start(k,true)};chips.appendChild(b)});
+
+  function pick(txt){
+    var t=txt.toLowerCase();
+    if(/phish|email|mail/.test(t))return 'phish';
+    if(/account|sign|login|travel|session|takeover/.test(t))return 'ato';
+    if(/ransom|isolate|endpoint|host/.test(t))return 'iso';
+    if(/vuln|weekly|monday|digest|patch/.test(t))return 'vuln';
+    return 'ato';
+  }
+  function msg(cls,html){var m=FR.el('<div class="m '+cls+'">'+html+'</div>');$('msgs').appendChild(m);$('msgs').scrollTop=1e5;return m}
+  function esc(s){return s.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+
+  async function start(key,scroll,custom){
+    var my=++tok,S=SC[key];cur=S;built=false;live=false;tab='canvas';
+    if(scroll)$('demo').scrollIntoView({behavior:'smooth'});
+    $('state').className='chip';$('state').textContent='Drafting…';
+    $('dry').disabled=true;$('live').disabled=true;$('rev').disabled=true;$('rev').setAttribute('aria-checked','false');$('live').textContent='Go live';
+    [].forEach.call(document.querySelectorAll('.tab'),function(t){t.setAttribute('aria-selected',t.dataset.t==='canvas')});
+    $('view').innerHTML='<div class="flow" id="flow"></div><div class="out" id="out" hidden></div>';
+    $('cvTitle').textContent='POWER · '+S.name+'.yaml';
+    msg('u',esc(custom||S.ask));
+    await FR.sleep(500);if(my!==tok)return;
+    var rb=msg('b','Reading your systems…<div id="rd"></div>');
+    for(var i=0;i<S.reads.length;i++){await FR.sleep(520);if(my!==tok)return;rb.querySelector('#rd').appendChild(FR.el('<div class="chk"><i>✓</i> '+S.reads[i]+'</div>'))}
+    await FR.sleep(500);if(my!==tok)return;
+    var flow=$('flow');
+    for(var n=0;n<S.nodes.length;n++){
+      var d=S.nodes[n];
+      if(n)flow.appendChild(FR.el('<div class="cn"></div>'));
+      var el=FR.el('<div class="nd '+d[0]+'" data-i="'+n+'"><div class="ic">'+d[1]+'</div><div><b>'+d[2]+'</b><small>'+d[3]+'</small></div><span class="chip '+(d[0]==='approve'?'a':d[0]==='ai'?'v':d[0]==='trigger'?'c':'')+'">'+({trigger:'Trigger',step:'Step',ai:'AI',approve:'Human',act:'Action'})[d[0]]+'</span></div>');
+      flow.appendChild(el);await FR.sleep(420);if(my!==tok)return;
+    }
+    built=true;
+    msg('b','Done. <b>'+S.nodes.length+' steps</b>. Note the AI step is followed by a human approval before any action runs. Try the dry-run, then read the file and the diff.<ul><li>Nothing is live yet.</li><li>Ask me to change anything, in plain words.</li></ul>');
+    $('state').className='chip a';$('state').textContent='Draft · not live';
+    $('dry').disabled=false;$('rev').disabled=false;
+  }
+
+  /* tabs */
+  function code(S){
+    var y='<span class="c"># '+S.name+'.yaml · generated by POWER · edit freely</span>\n<span class="k">name</span>: '+S.name+'\n<span class="k">enabled</span>: <span class="s">false</span> <span class="c"># flips on only after you approve</span>\n<span class="k">steps</span>:\n';
+    S.nodes.forEach(function(n,i){y+='  - <span class="k">id</span>: s'+(i+1)+'\n    <span class="k">kind</span>: '+n[0]+'\n    <span class="k">name</span>: <span class="s">"'+n[2]+'"</span>\n    <span class="k">note</span>: <span class="s">"'+n[3]+'"</span>\n'});
+    return y+'<span class="k">safety</span>:\n  <span class="k">ai_output_needs_human_before_action</span>: <span class="s">true</span> <span class="c"># engine rule</span>';
+  }
+  function diff(S){
+    var s='<span class="h">--- /dev/null\n+++ workflows/'+S.name+'.yaml</span>\n';
+    var plain=code(S).replace(/<[^>]+>/g,'').split('\n');
+    plain.forEach(function(l){s+='<span class="a">+ '+l.replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</span>'});
+    return '<pre class="diff">'+s+'</pre>';
+  }
+  function show(t){
+    tab=t;[].forEach.call(document.querySelectorAll('.tab'),function(x){x.setAttribute('aria-selected',x.dataset.t===t)});
+    if(!cur)return;
+    var v=$('view');
+    if(t==='file')v.innerHTML='<pre class="code">'+code(cur)+'</pre>';
+    else if(t==='diff')v.innerHTML=diff(cur);
+    else{
+      v.innerHTML='<div class="flow" id="flow"></div><div class="out" id="out" hidden></div>';
+      var f=$('flow');cur.nodes.forEach(function(d,n){if(n)f.appendChild(FR.el('<div class="cn" style="animation:none"></div>'));f.appendChild(FR.el('<div class="nd '+d[0]+'" style="animation:none" data-i="'+n+'"><div class="ic">'+d[1]+'</div><div><b>'+d[2]+'</b><small>'+d[3]+'</small></div><span class="chip">'+({trigger:'Trigger',step:'Step',ai:'AI',approve:'Human',act:'Action'})[d[0]]+'</span></div>'))});
+      v.appendChild(FR.el('<div class="safety">🔐 Safety check passed: no AI-generated value can reach an action without a human approval after it.</div>'));
+    }
+  }
+  [].forEach.call(document.querySelectorAll('.tab'),function(t){t.onclick=function(){show(t.dataset.t)}});
+
+  /* dry run */
+  $('dry').onclick=async function(){
+    if(!built)return;var my=++tok;show('canvas');this.disabled=true;$('state').className='chip c';$('state').textContent='Dry-run…';
+    var out=$('out');out.hidden=false;out.innerHTML='';
+    var nodes=document.querySelectorAll('.nd');
+    for(var i=0;i<cur.nodes.length;i++){
+      nodes[i].classList.add(cur.nodes[i][0]==='approve'?'hold':'run');
+      out.appendChild(FR.el('<div>› '+esc(cur.sample[i])+'</div>'));await FR.sleep(760);if(my!==tok)return;
+      nodes[i].classList.remove('run','hold');nodes[i].classList.add('ok');
+    }
+    out.appendChild(FR.el('<div style="color:#7ff0c5">✓ dry-run complete · nothing was changed in any real system</div>'));
+    $('state').className='chip g';$('state').textContent='Dry-run passed';
+    msg('b','Dry-run passed. Nothing touched a real system. When you\'ve read the <b>Diff</b>, tick "I\'ve reviewed it" and go live.');
+    this.disabled=false;
+  };
+  $('rev').onclick=function(){var on=this.getAttribute('aria-checked')!=='true';this.setAttribute('aria-checked',on);$('live').disabled=!on||live;if(on)show('diff')};
+  $('live').onclick=function(){
+    live=true;this.textContent='✓ Live';this.disabled=true;$('state').className='chip g';$('state').textContent='Live · approved by you';
+    msg('b','It\'s live, and it\'s <b>yours</b>. The file is in your repo and every run goes into the audit chain.');
+  };
+
+  /* forms */
+  function ask(txt){if(!txt.trim())return;var k=pick(txt);start(k,true,txt)}
+  (function(){var sp='';try{sp=sessionStorage.getItem('fr33.spec')||'';sessionStorage.removeItem('fr33.spec')}catch(x){}
+    if(sp){$('heroIn').value=sp;var n=document.querySelector('#heroForm+.chips');var m=FR.el('<p class="note">Handed over from FAST: this is your spec. Press Build it, or edit it first.</p>');if(n)n.before(m);$('heroIn').focus()}})();
+  $('heroForm').onsubmit=function(e){e.preventDefault();ask($('heroIn').value);$('heroIn').value=''};
+  $('chatForm').onsubmit=function(e){
+    e.preventDefault();var v=$('chatIn').value;$('chatIn').value='';if(!v.trim())return;
+    if(!cur||!built){ask(v);return}
+    msg('u',esc(v));
+    setTimeout(function(){
+      cur.nodes.push(['act','➕','Your change: '+(v.length>34?v.slice(0,34)+'…':v),'Added by POWER · review in Diff']);
+      cur.sample.push('extra: would apply your requested change');
+      live=false;$('live').textContent='Go live';$('live').disabled=true;$('rev').setAttribute('aria-checked','false');
+      show('canvas');$('state').className='chip a';$('state').textContent='Draft · changed';
+      msg('b','Added as a new step at the end. It shows up in the <b>Diff</b> so you can review it. Re-run the dry-run when ready.');
+    },700);
+  };
+
+  /* placeholder typing */
+  var ph=['When a login looks stolen, lock it and tell me…','Every Monday, tell me what to patch first…','If a laptop looks infected, cut it off the network…'];
+  (async function loop(){var i=0;while(true){var s=ph[i++%ph.length],inp=$('heroIn');for(var c=0;c<=s.length;c++){if(document.activeElement===inp||inp.value)break;inp.placeholder=s.slice(0,c);await FR.sleep(34)}await FR.sleep(1800)}})();
+
+  /* models */
+  var M={q:'Qwen runs on your own machine through any local runtime. POWER sends it your connected-system schemas and sample events, never your secrets, and checks every answer against the workflow schema before showing it to you.',g:'GLM works the same way: local, swappable, no code changes. Switch models any time and re-run your own test scenarios to see which one handles your environment best.',t:'Fine-tune on your team\'s own runbooks and past investigations. The result is a model that writes workflows the way your team actually works. The training data never leaves your hardware.',h:'Prefer a hosted model for some tasks? Allowed, but optional. Identifiers are replaced with stand-ins before anything leaves your network, and you can turn it off completely.'};
+  function mm(k){$('mout').textContent=M[k];[].forEach.call(document.querySelectorAll('.mdl'),function(b){b.setAttribute('aria-pressed',b.dataset.m===k)})}
+  [].forEach.call(document.querySelectorAll('.mdl'),function(b){b.onclick=function(){mm(b.dataset.m)}});mm('q');
+})();
+</script>
+</body>
+</html>
